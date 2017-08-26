@@ -6,18 +6,41 @@
  */
 package healthsherpa;
 
+import java.awt.Component;
+import java.awt.Container;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.InputMismatchException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ivan
  */
 public class NuevoUserFrame extends javax.swing.JFrame {
+    
+    private User nuevoUsuario;
+    private Registros registrosUsuario;
 
     /**
      * Creates new form NuevoUserFrame
      */
+    
     public NuevoUserFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        nuevoUsuario = new User();
+        registrosUsuario = new Registros();
+        pnlPrincipal.setEnabledAt(0, true);
+        pnlPrincipal.setEnabledAt(1, false);
+        pnlPrincipal.setEnabledAt(2, false);
     }
 
     /**
@@ -29,356 +52,910 @@ public class NuevoUserFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        genero = new javax.swing.ButtonGroup();
+        objetivo = new javax.swing.ButtonGroup();
+        jLabel32 = new javax.swing.JLabel();
+        pnlPrincipal = new javax.swing.JTabbedPane();
+        pnlIntro = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        btnComenzar = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
+        btnVolverLogin = new javax.swing.JButton();
+        pnlInfo = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         radioGeneroHombre = new javax.swing.JRadioButton();
         radioGeneroMujer = new javax.swing.JRadioButton();
-        jdateBirthdateUser = new com.toedter.calendar.JDateChooser();
+        dateNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jcomboActividad = new javax.swing.JComboBox<>();
+        comboActividad = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        txtCintura = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        txtCuello = new javax.swing.JTextField();
-        txtCadera = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         btnIntroValues = new javax.swing.JButton();
-        txtPesoUser = new javax.swing.JTextField();
-        txtAlturaUser = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        txtPeso = new javax.swing.JTextField();
+        txtCintura = new javax.swing.JTextField();
+        txtCuello = new javax.swing.JTextField();
+        txtCadera = new javax.swing.JTextField();
+        txtAltura = new javax.swing.JTextField();
+        pnlObjetivos = new javax.swing.JPanel();
         radioPerderPeso = new javax.swing.JRadioButton();
         radioMantenerPeso = new javax.swing.JRadioButton();
         radioGanarPeso = new javax.swing.JRadioButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        txtTMB = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        txtGET = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        txtFatPercent = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        txtMasaMagra = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        btnBackToLogin = new javax.swing.JButton();
         btnStart = new javax.swing.JButton();
+        txtTMB = new javax.swing.JTextField();
+        txtGET = new javax.swing.JTextField();
+        txtFatPercent = new javax.swing.JTextField();
+        txtMasaMagra = new javax.swing.JTextField();
+
+        jLabel32.setText("jLabel32");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
+        pnlPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlPrincipalMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("- El objetivo de ésta aplicación es ayudarte a conseguir un porcentaje de grasa corporal saludable. Entre el 8-15% en hombres, y 15-25% en mujeres.");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/healthsherpa/images/fat.jpg"))); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setText("Introduce un nombre de usuario:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel27.setText("Introduce una contraseña:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("- Mediante el registro sencillo de unas medidas ésta aplicación realizará unos calculos aproximados del gasto calórico y el porcentaje de grasa corporal.");
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel28.setText("- Existen instrumentos de medición más precisos para realizar las mediciones mencionadas, ésta aplicación solo pretende ser una guía.");
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel29.setText("- Puede ser un riesgo para la salud someterse a restricciones calóricas severas, el uso apropiado de ésta aplicación es responsabilidad del usuario.");
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel30.setText("- El ejercicio físico es una variable indispensable en la composición corporal, así como lo es una correcta alimentación.");
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel31.setText("- Recomendamos de forma añadida trabajar las diferentes capacidades físicas (fuerza, flexibilidad, resistencia, equilibrio, velocidad y potencia).");
+
+        btnComenzar.setText("Comenzar!");
+        btnComenzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComenzarActionPerformed(evt);
+            }
+        });
+
+        btnVolverLogin.setText("Volver al Loguin");
+        btnVolverLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverLoginActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlIntroLayout = new javax.swing.GroupLayout(pnlIntro);
+        pnlIntro.setLayout(pnlIntroLayout);
+        pnlIntroLayout.setHorizontalGroup(
+            pnlIntroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlIntroLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(pnlIntroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIntroLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnlIntroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel27))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlIntroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                        .addGap(426, 426, 426))
+                    .addGroup(pnlIntroLayout.createSequentialGroup()
+                        .addGroup(pnlIntroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlIntroLayout.createSequentialGroup()
+                                .addGap(227, 227, 227)
+                                .addComponent(btnVolverLogin)
+                                .addGap(103, 103, 103)
+                                .addComponent(btnComenzar))
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+        pnlIntroLayout.setVerticalGroup(
+            pnlIntroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlIntroLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(pnlIntroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlIntroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 437, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel28)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel29)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel30)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGroup(pnlIntroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnComenzar)
+                    .addComponent(btnVolverLogin))
+                .addGap(25, 25, 25))
         );
 
-        jTabbedPane1.addTab("Introducción", jPanel1);
+        pnlPrincipal.addTab("Introducción", pnlIntro);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("¿Eres hombre o mujer?");
 
+        genero.add(radioGeneroHombre);
+        radioGeneroHombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        radioGeneroHombre.setSelected(true);
         radioGeneroHombre.setText("Hombre");
+        radioGeneroHombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioGeneroHombreMouseClicked(evt);
+            }
+        });
 
+        genero.add(radioGeneroMujer);
+        radioGeneroMujer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         radioGeneroMujer.setText("Mujer");
+        radioGeneroMujer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioGeneroMujerMouseClicked(evt);
+            }
+        });
 
+        dateNacimiento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                dateNacimientoFocusLost(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Fecha de nacimiento");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Peso");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Kg");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Altura");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Cm");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("Nivel de actividad");
 
-        jcomboActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedentario", "Algo activo", "Activo", "Muy activo", "Deportista profesional" }));
+        comboActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedentario", "Algo activo", "Activo", "Muy activo", "Deportista profesional" }));
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setText("Cintura");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Cm");
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel13.setText("Cuello");
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel14.setText("Cadera");
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setText("Cm");
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setText("Cm");
 
+        btnIntroValues.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnIntroValues.setText("Introducir valores");
+        btnIntroValues.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIntroValuesActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel6))
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(txtPesoUser, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jcomboActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(radioGeneroHombre)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(radioGeneroMujer))
-                                        .addComponent(jdateBirthdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(txtCadera, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                                                .addComponent(txtCintura, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtCuello, javax.swing.GroupLayout.Alignment.LEADING))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel12)
-                                                .addComponent(jLabel15)
-                                                .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING))))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(txtAlturaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel33.setText("Rellene a continuación todos los campos");
+
+        txtCadera.setEnabled(false);
+
+        javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
+        pnlInfo.setLayout(pnlInfoLayout);
+        pnlInfoLayout.setHorizontalGroup(
+            pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoLayout.createSequentialGroup()
+                .addContainerGap(377, Short.MAX_VALUE)
+                .addComponent(btnIntroValues, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(347, 347, 347))
+            .addGroup(pnlInfoLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInfoLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlInfoLayout.createSequentialGroup()
+                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlInfoLayout.createSequentialGroup()
+                                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6))
+                                .addGap(57, 57, 57)
+                                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoLayout.createSequentialGroup()
+                                        .addComponent(radioGeneroHombre)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(radioGeneroMujer))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoLayout.createSequentialGroup()
+                                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtCadera, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtCuello, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtCintura, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtPeso, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dateNacimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtAltura))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(42, 42, 42)))
-                                .addContainerGap(594, Short.MAX_VALUE))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnIntroValues)
-                .addGap(398, 398, 398))
+                                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel16)))
+                                    .addComponent(comboActividad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel33)
+                            .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel13))
+                            .addComponent(jLabel14))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pnlInfoLayout.setVerticalGroup(
+            pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel33)
+                .addGap(18, 18, 18)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(radioGeneroHombre)
                     .addComponent(radioGeneroMujer))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(23, 23, 23)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jdateBirthdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(txtPesoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
-                    .addComponent(txtAlturaUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jcomboActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(txtCintura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(txtCintura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(txtCuello, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                    .addComponent(jLabel15)
+                    .addComponent(txtCuello, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(txtCadera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
+                    .addComponent(jLabel16)
+                    .addComponent(txtCadera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(comboActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addComponent(btnIntroValues)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Información personal", jPanel3);
+        pnlPrincipal.addTab("Información personal", pnlInfo);
 
+        pnlObjetivos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pnlObjetivosFocusGained(evt);
+            }
+        });
+        pnlObjetivos.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                pnlObjetivosComponentShown(evt);
+            }
+        });
+
+        objetivo.add(radioPerderPeso);
+        radioPerderPeso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         radioPerderPeso.setText("Perder peso (maximizando la perdida de grasa y presevando la masa muscular)");
+        radioPerderPeso.setActionCommand("definir");
 
+        objetivo.add(radioMantenerPeso);
+        radioMantenerPeso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        radioMantenerPeso.setSelected(true);
         radioMantenerPeso.setText("Mantener peso (reduciendo el porcentaje de grasa corporal)");
+        radioMantenerPeso.setActionCommand("mantener");
 
+        objetivo.add(radioGanarPeso);
+        radioGanarPeso.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         radioGanarPeso.setText("Ganar peso (aumentar la ganancia muscular reduciendo la ganancia de grasa)");
+        radioGanarPeso.setActionCommand("volumen");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Tu perfil es:");
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel18.setText("- Tasa metabólica basal (TMB)");
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel19.setText("- Gasto energético total (GET)");
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel20.setText("- Porcentaje de grasa corporal");
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel21.setText("- Masa corporal magra");
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel22.setText("Kcal");
 
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel23.setText("Kcal");
 
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel24.setText("%");
 
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel25.setText("Kg");
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel26.setText("Objetivos:");
 
-        btnBackToLogin.setText("Volver al login");
+        btnStart.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnStart.setText("A la aplicación");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
 
-        btnStart.setText("Comenzar");
+        txtTMB.setEditable(false);
+        txtTMB.setBackground(new java.awt.Color(255, 255, 255));
+        txtTMB.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        txtGET.setEditable(false);
+        txtGET.setBackground(new java.awt.Color(255, 255, 255));
+        txtGET.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtFatPercent.setEditable(false);
+        txtFatPercent.setBackground(new java.awt.Color(255, 255, 255));
+        txtFatPercent.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtMasaMagra.setEditable(false);
+        txtMasaMagra.setBackground(new java.awt.Color(255, 255, 255));
+        txtMasaMagra.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        javax.swing.GroupLayout pnlObjetivosLayout = new javax.swing.GroupLayout(pnlObjetivos);
+        pnlObjetivos.setLayout(pnlObjetivosLayout);
+        pnlObjetivosLayout.setHorizontalGroup(
+            pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlObjetivosLayout.createSequentialGroup()
+                .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlObjetivosLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
                             .addComponent(jLabel26)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlObjetivosLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
                             .addComponent(jLabel19)
                             .addComponent(jLabel20)
-                            .addComponent(jLabel18)
                             .addComponent(jLabel21))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFatPercent, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                            .addComponent(txtGET)
+                        .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTMB)
-                            .addComponent(txtMasaMagra))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtGET)
+                            .addComponent(txtFatPercent)
+                            .addComponent(txtMasaMagra, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
                             .addComponent(jLabel23)
                             .addComponent(jLabel24)
                             .addComponent(jLabel25)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlObjetivosLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(radioMantenerPeso)
                             .addComponent(radioPerderPeso)
-                            .addComponent(radioGanarPeso)
-                            .addComponent(btnBackToLogin))))
-                .addContainerGap(432, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnStart)
-                .addGap(49, 49, 49))
+                            .addComponent(radioGanarPeso)))
+                    .addGroup(pnlObjetivosLayout.createSequentialGroup()
+                        .addGap(388, 388, 388)
+                        .addComponent(btnStart)))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlObjetivosLayout.setVerticalGroup(
+            pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlObjetivosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel17)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(txtTMB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22))
+                    .addComponent(jLabel22)
+                    .addComponent(txtTMB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(txtGET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
+                    .addComponent(jLabel23)
+                    .addComponent(txtGET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(txtFatPercent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
+                    .addComponent(jLabel24)
+                    .addComponent(txtFatPercent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlObjetivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(txtMasaMagra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25))
+                    .addComponent(jLabel25)
+                    .addComponent(txtMasaMagra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(radioPerderPeso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(radioMantenerPeso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(radioGanarPeso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBackToLogin)
-                    .addComponent(btnStart))
-                .addGap(40, 40, 40))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(btnStart)
+                .addGap(45, 45, 45))
         );
 
-        jTabbedPane1.addTab("Objetivos", jPanel2);
+        pnlPrincipal.addTab("Objetivos", pnlObjetivos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(pnlPrincipal)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(pnlPrincipal)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+/**
+ * Botón comenzar
+ * @param evt 
+ */
+    private void btnComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarActionPerformed
+        // TODO add your handling code here:
+        String pass = String.valueOf(this.txtPassword.getPassword());
+        if(this.txtUsuario.getText().isEmpty() || pass.isEmpty())
+        {
+             JOptionPane.showMessageDialog(this, "Debe ingresar un nombre de usuario y una contraseña validos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+       String username = this.txtUsuario.getText();
+        if(User.isAlready(username))
+        {
+            JOptionPane.showMessageDialog(this, "El nombre de usuario "+username+" ya se encuentra registrado en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;  
+        }
+        else
+         { 
+            this.nuevoUsuario.setUsuario(username);
+            this.nuevoUsuario.setPasswd(pass);
+            pnlPrincipal.setEnabledAt(1, true);
+            this.btnComenzar.setEnabled(false);
+         }    
+            
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnComenzarActionPerformed
 
+    private void btnVolverLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverLoginActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+              java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                LoginFrame loguin = new LoginFrame();
+                
+                loguin.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_btnVolverLoginActionPerformed
+
+    private void radioGeneroMujerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioGeneroMujerMouseClicked
+        // TODO add your handling code here:
+        if(this.radioGeneroMujer.isSelected()){
+            this.txtCadera.setEnabled(true);
+        }else{
+            this.txtCadera.setEnabled(false);
+        }
+    }//GEN-LAST:event_radioGeneroMujerMouseClicked
+
+    private void radioGeneroHombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioGeneroHombreMouseClicked
+        // TODO add your handling code here:
+        if(this.radioGeneroHombre.isSelected()){
+            this.txtCadera.setEnabled(false);
+        } else {
+            this.txtCadera.setEnabled(true);
+        }
+    }//GEN-LAST:event_radioGeneroHombreMouseClicked
+
+    private void btnIntroValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIntroValuesActionPerformed
+        // TODO add your handling code here:
+        boolean todoOK=false;
+       if(this.radioGeneroHombre.isSelected()){
+           todoOK=validaCamposHombre();
+           this.nuevoUsuario.setGenero(User.HOMBRE);
+       }else{
+           todoOK=validaCamposMujer();
+           this.nuevoUsuario.setGenero(User.MUJER);
+       }
+       
+       this.nuevoUsuario.setNivel_actividad(this.comboActividad.getSelectedIndex());
+       
+      if(todoOK){ 
+       this.nuevoUsuario.setBirthdate(this.dateNacimiento.getDate());
+       this.nuevoUsuario.setAltura(Double.parseDouble(this.txtAltura.getText()));
+       this.nuevoUsuario.setObjetivo(1);
+       this.nuevoUsuario.grabar();
+        this.nuevoUsuario.cargaID();
+       if(this.nuevoUsuario.getGenero().equals(User.MUJER)){
+           this.registrosUsuario.setCadera(Double.parseDouble(this.txtCadera.getText()));
+       }else{
+           this.registrosUsuario.setCadera(0);
+       }
+       this.registrosUsuario.setId_usuario(this.nuevoUsuario.getIdUsuario());
+       this.registrosUsuario.setPeso(Double.parseDouble(this.txtPeso.getText()));
+       this.registrosUsuario.setCuello(Double.parseDouble(this.txtCuello.getText()));
+       this.registrosUsuario.setCintura(Double.parseDouble(this.txtCintura.getText()));
+       this.registrosUsuario.setFecha(new Date());
+       
+       this.pnlPrincipal.setEnabledAt(2, true);
+       this.btnIntroValues.setEnabled(false);
+      }
+       
+    }//GEN-LAST:event_btnIntroValuesActionPerformed
+
+    private boolean validaCamposHombre(){
+        boolean edadOK=true;
+        boolean pesoOK=true;
+        boolean alturaOK=true;
+        boolean cinturaOK=true;
+        boolean cuelloOK=true;
+        
+         if(this.dateNacimiento.getDate() == null){
+            JOptionPane.showMessageDialog(this, "La fecha de nacimiento no puede quedar vacía.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            edadOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaEdad(this.dateNacimiento.getCalendar());
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                edadOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                edadOK=false;
+            }
+        }
+        
+        if(this.txtPeso.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "El peso no puede quedar vacío.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            pesoOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaPeso(Double.parseDouble(this.txtPeso.getText()));
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                pesoOK=false;
+            } catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                pesoOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                pesoOK=false;
+            }
+        }
+        
+        if(this.txtAltura.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La medida de la altura no puede quedar vacía.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            alturaOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaAltura(Double.parseDouble(this.txtAltura.getText()));
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                alturaOK=false;
+            } catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                alturaOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                alturaOK=false;
+            }
+        }
+        
+        if(this.txtCintura.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La medida de la cintura no puede quedar vacía.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            cinturaOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaCintura(Double.parseDouble(this.txtCintura.getText()));
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cinturaOK=false;
+            } catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cinturaOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cinturaOK=false;
+            }
+        }
+        
+        if(this.txtCuello.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La medida del cuello cuello no puede quedar vacía.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            cuelloOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaAltura(Double.parseDouble(this.txtCuello.getText()));
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cuelloOK=false;
+            } catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cuelloOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cuelloOK=false;
+            }
+        }
+        if(edadOK && pesoOK && alturaOK && cinturaOK && cuelloOK){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    private boolean validaCamposMujer(){
+        boolean edadOK=true;
+        boolean pesoOK=true;
+        boolean alturaOK=true;
+        boolean cinturaOK=true;
+        boolean cuelloOK=true;
+        boolean caderaOK=true;
+        
+         if(this.dateNacimiento.getDate() == null){
+            JOptionPane.showMessageDialog(this, "La fecha de nacimiento no puede quedar vacía.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            edadOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaEdad(this.dateNacimiento.getCalendar());
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                edadOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                edadOK=false;
+            }
+        }
+        
+        if(this.txtPeso.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "El peso no puede quedar vacío.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            pesoOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaPeso(Double.parseDouble(this.txtPeso.getText()));
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                pesoOK=false;
+            } catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                pesoOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                pesoOK=false;
+            }
+        }
+        
+        if(this.txtAltura.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La medida altura no puede quedar vacía.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            alturaOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaAltura(Double.parseDouble(this.txtAltura.getText()));
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                alturaOK=false;
+            } catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                alturaOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                alturaOK=false;
+            }
+        }
+        
+        if(this.txtCintura.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La medida de la cintura no puede quedar vacía.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            cinturaOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaCintura(Double.parseDouble(this.txtCintura.getText()));
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cinturaOK=false;
+            } catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cinturaOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cinturaOK=false;
+            }
+        }
+        
+        if(this.txtCuello.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La medida del cuello cuello no puede quedar vacía.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            cuelloOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaAltura(Double.parseDouble(this.txtCuello.getText()));
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cuelloOK=false;
+            } catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cuelloOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                cuelloOK=false;
+            }
+        }
+        
+        if(this.txtCadera.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La medida del cuello cuello no puede quedar vacía.", "Aviso", JOptionPane.ERROR_MESSAGE);
+            caderaOK=false;
+        } else {
+            try {
+                Validaciones.CompruebaAltura(Double.parseDouble(this.txtCuello.getText()));
+            } catch (Validaciones ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                caderaOK=false;
+            } catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                caderaOK=false;
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error de tipo: "+ex.getMessage(), "Alerta", JOptionPane.ERROR_MESSAGE);
+                caderaOK=false;
+            }
+            
+        }
+        
+        if(edadOK && pesoOK && alturaOK && cinturaOK && cuelloOK && caderaOK){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    private void dateNacimientoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dateNacimientoFocusLost
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_dateNacimientoFocusLost
+
+    private void pnlPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPrincipalMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlPrincipalMouseClicked
+
+    private void pnlObjetivosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnlObjetivosFocusGained
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_pnlObjetivosFocusGained
+
+   
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        // TODO add your handling code here:
+        int objetivo = 0;
+        if (this.radioPerderPeso.isSelected()){
+            objetivo = User.DEFINICION;
+        } else if (this.radioMantenerPeso.isSelected()){
+            objetivo = User.MANTENIMIENTO;
+        } else {
+            objetivo = User.VOLUMEN;
+        }
+        this.nuevoUsuario.setObjetivo(objetivo);
+        this.nuevoUsuario.actualizarObjetivo();
+        
+        this.registrosUsuario.grabar();
+        
+        this.dispose();
+              java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                MainFrame healthsherpa = new MainFrame(nuevoUsuario, registrosUsuario);
+                
+                healthsherpa.setVisible(true);
+            }
+        });
+        
+    }//GEN-LAST:event_btnStartActionPerformed
+
+    private void pnlObjetivosComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_pnlObjetivosComponentShown
+        // TODO add your handling code here:
+        this.txtTMB.setText(String.format("%.2f", Calculos.calcularTMB(this.nuevoUsuario, this.registrosUsuario.getPeso())));
+        this.txtGET.setText(String.format("%.2f", Calculos.calcularGET(this.nuevoUsuario, Calculos.calcularTMB(this.nuevoUsuario, this.registrosUsuario.getPeso()))));
+        double fatPercent = Calculos.calcularPorcentajeGrasa(this.nuevoUsuario, this.registrosUsuario.getCintura(), this.registrosUsuario.getCuello(), this.registrosUsuario.getCadera());
+        this.txtFatPercent.setText(String.format("%.2f",fatPercent));
+        this.txtMasaMagra.setText(String.format("%.2f",Calculos.calcularMasaMagra(this.registrosUsuario.getPeso(), fatPercent)));
+    }//GEN-LAST:event_pnlObjetivosComponentShown
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -413,11 +990,17 @@ public class NuevoUserFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBackToLogin;
+    private javax.swing.JButton btnComenzar;
     private javax.swing.JButton btnIntroValues;
     private javax.swing.JButton btnStart;
+    private javax.swing.JButton btnVolverLogin;
+    private javax.swing.JComboBox<String> comboActividad;
+    private com.toedter.calendar.JDateChooser dateNacimiento;
+    private javax.swing.ButtonGroup genero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -429,6 +1012,7 @@ public class NuevoUserFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -436,32 +1020,40 @@ public class NuevoUserFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JComboBox<String> jcomboActividad;
-    private com.toedter.calendar.JDateChooser jdateBirthdateUser;
+    private javax.swing.ButtonGroup objetivo;
+    private javax.swing.JPanel pnlInfo;
+    private javax.swing.JPanel pnlIntro;
+    private javax.swing.JPanel pnlObjetivos;
+    private javax.swing.JTabbedPane pnlPrincipal;
     private javax.swing.JRadioButton radioGanarPeso;
     private javax.swing.JRadioButton radioGeneroHombre;
     private javax.swing.JRadioButton radioGeneroMujer;
     private javax.swing.JRadioButton radioMantenerPeso;
     private javax.swing.JRadioButton radioPerderPeso;
-    private javax.swing.JTextField txtAlturaUser;
+    private javax.swing.JTextField txtAltura;
     private javax.swing.JTextField txtCadera;
     private javax.swing.JTextField txtCintura;
     private javax.swing.JTextField txtCuello;
     private javax.swing.JTextField txtFatPercent;
     private javax.swing.JTextField txtGET;
     private javax.swing.JTextField txtMasaMagra;
-    private javax.swing.JTextField txtPesoUser;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPeso;
     private javax.swing.JTextField txtTMB;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
